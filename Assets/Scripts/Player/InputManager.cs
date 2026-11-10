@@ -1,6 +1,7 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
-
+[DefaultExecutionOrder(-100)]
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
@@ -19,7 +20,7 @@ public class InputManager : MonoBehaviour
 
         inputActions = new PlayerInputActions();
         inputActions.Enable();
-        //inputActions.UI.Enable();
+        inputActions.UI.Enable();
     }
 
     private void OnJumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -37,6 +38,7 @@ public class InputManager : MonoBehaviour
     }
     private void OnSuckPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        
         SuckPerformed?.Invoke();
     }
     private void OnSuckCancelled(UnityEngine.InputSystem.InputAction.CallbackContext context)
