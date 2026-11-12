@@ -18,6 +18,7 @@ public class VacuumGun : MonoBehaviour
     public float m_collectDistance = 0.5f;
     public float m_suctionAngle = 45f;
     private Coroutine m_fireCoroutine;
+    private bool doingSomething = false;
     [Header("Inventory")]
     public int m_maxCapacity = 10;
 
@@ -183,7 +184,9 @@ public class VacuumGun : MonoBehaviour
     
     private void OnSuckPerformed()
     {
+        if (doingSomething) return;
         m_isSucking = true;
+        doingSomething = true;
     }
 
     private void OnSuckCancelled()
@@ -193,20 +196,26 @@ public class VacuumGun : MonoBehaviour
         {
             m_objectsBeingSucked.RemoveAt(i);
         }
+        doingSomething = false;
+
     }
 
     private void OnFirePerformed()
     {
+        if (doingSomething) return;
         m_fireCoroutine = StartCoroutine(WaitBetweenLaunch(0));
+        doingSomething = true;
     }
 
     private void OnFireCancelled()
     {
+        doingSomething = false;
         if (m_fireCoroutine != null)
         {
             StopCoroutine(m_fireCoroutine);
             m_fireCoroutine = null;
         }
+        doingSomething = false;
     }
 
     private void OnEnable()

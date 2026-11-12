@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ed07c6dd-ec87-4efc-b983-437ef17ed1b4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayGround Marco.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayGround Marco.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Planet/GravityObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Planet/GravityObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/VacuumGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/VacuumGun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +117,7 @@
       <workItem from="1794191237733" duration="3587000" />
       <workItem from="1794214743911" duration="1577000" />
       <workItem from="1794346362302" duration="308000" />
-      <workItem from="1794423905865" duration="13657000" />
+      <workItem from="1794423905865" duration="15620000" />
     </task>
     <servers />
   </component>
