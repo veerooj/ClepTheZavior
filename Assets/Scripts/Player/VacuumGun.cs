@@ -143,13 +143,15 @@ public class VacuumGun : MonoBehaviour
         if (m_storedObjects.Count == m_maxCapacity)
         {
             m_text.color = Color.crimson;
+            m_text.fontSize = 28;
             m_text.text = "Full!";
         }
 
         if (m_storedObjects.Count > m_maxCapacity)
         {
             m_text.color = Color.red;
-            m_text.text = "XOX";
+            m_text.fontSize = 37;
+            m_text.text = ">_<";
         }
         else if (m_storedObjects.Count < m_maxCapacity && m_text.color != Color.lawnGreen)
         {
