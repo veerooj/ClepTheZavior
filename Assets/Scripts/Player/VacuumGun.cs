@@ -1,6 +1,8 @@
 
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class VacuumGun : MonoBehaviour
 {
@@ -15,12 +17,15 @@ public class VacuumGun : MonoBehaviour
     public float m_suctionMaxSpeed = 15f;
     public float m_collectDistance = 0.5f;
     public float m_suctionAngle = 45f;
+    private Coroutine m_fireCoroutine;
     [Header("Inventory")]
     public int m_maxCapacity = 10;
 
     [Header("Ejection")]
     public float m_ejectForce = 15f;
 
+    [Header("Text")] 
+    [SerializeField] private TextMeshProUGUI m_text;
     [Header("Detection")]
     public LayerMask m_suckableLayer;
     private bool m_isSucking;
@@ -37,6 +42,7 @@ public class VacuumGun : MonoBehaviour
     {
         if (m_raycastSpot == null && Camera.main != null)
             m_raycastSpot = Camera.main.transform;
+        UIRefresh();
     }
 
     private void Update()
@@ -56,7 +62,7 @@ public class VacuumGun : MonoBehaviour
         if (m_suctionPoint == null || m_raycastSpot == null)
             return;
 
-        int availableCapacity = m_maxCapacity - m_storedObjects.Count - m_objectsBeingSucked.Count;
+        int availableCapacity = m_maxCapacity - m_storedObjects.Count /*- m_objectsBeingSucked.Count*/;
 
         if (availableCapacity <= 0)
             return;
@@ -88,8 +94,9 @@ public class VacuumGun : MonoBehaviour
     }
     private void AttractObjects()
     {
-        if (m_suctionPoint == null)
+        if (m_suctionPoint == null || m_storedObjects.Count > m_maxCapacity)
             return;
+        
 
         for (int i = m_objectsBeingSucked.Count - 1; i >= 0; i--)
         {
@@ -101,8 +108,7 @@ public class VacuumGun : MonoBehaviour
                 continue;
             }
 
-            Vector3 direction =
-                m_suctionPoint.position - rb.position;
+            Vector3 direction = m_suctionPoint.position - rb.position;
 
             float distance = direction.magnitude;
 
@@ -115,13 +121,38 @@ public class VacuumGun : MonoBehaviour
 
                 m_objectsBeingSucked.RemoveAt(i);
                 m_storedObjects.Add(rb);
-
+                UIRefresh();
                 continue;
             }
 
             rb.AddForce(direction.normalized * m_suctionForce, ForceMode.Acceleration);
 
             rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, m_suctionMaxSpeed);
+        }
+
+        if (m_storedObjects.Count > m_maxCapacity)
+        {
+            StartCoroutine(WaitBetweenLaunch(m_maxCapacity));
+        }
+    }
+
+    private void UIRefresh()
+    {
+        m_text.text = m_storedObjects.Count+"/"+ m_maxCapacity;
+        if (m_storedObjects.Count == m_maxCapacity)
+        {
+            m_text.color = Color.crimson;
+            m_text.text = "Full!";
+        }
+
+        if (m_storedObjects.Count > m_maxCapacity)
+        {
+            m_text.color = Color.red;
+            m_text.text = "XOX";
+        }
+        else if (m_storedObjects.Count < m_maxCapacity && m_text.color != Color.lawnGreen)
+        {
+            m_text.color = Color.lawnGreen;
         }
     }
     
@@ -147,6 +178,7 @@ public class VacuumGun : MonoBehaviour
         rb.AddForce(m_raycastSpot.forward * m_ejectForce, ForceMode.Impulse);
 
         m_storedObjects.RemoveAt(index);
+        UIRefresh();
     }
     
     private void OnSuckPerformed()
@@ -157,11 +189,24 @@ public class VacuumGun : MonoBehaviour
     private void OnSuckCancelled()
     {
         m_isSucking = false;
+        for (int i = m_objectsBeingSucked.Count - 1; i >= 0; i--)
+        {
+            m_objectsBeingSucked.RemoveAt(i);
+        }
     }
 
     private void OnFirePerformed()
     {
-        Eject();
+        m_fireCoroutine = StartCoroutine(WaitBetweenLaunch(0));
+    }
+
+    private void OnFireCancelled()
+    {
+        if (m_fireCoroutine != null)
+        {
+            StopCoroutine(m_fireCoroutine);
+            m_fireCoroutine = null;
+        }
     }
 
     private void OnEnable()
@@ -169,6 +214,7 @@ public class VacuumGun : MonoBehaviour
         InputManager.Instance.SuckPerformed += OnSuckPerformed;
         InputManager.Instance.SuckCancelled += OnSuckCancelled;
         InputManager.Instance.FirePerformed += OnFirePerformed;
+        InputManager.Instance.FireCancelled += OnFireCancelled;
     }
 
     private void OnDisable()
@@ -176,18 +222,12 @@ public class VacuumGun : MonoBehaviour
         InputManager.Instance.SuckPerformed -= OnSuckPerformed;
         InputManager.Instance.SuckCancelled -= OnSuckCancelled;
         InputManager.Instance.FirePerformed -= OnFirePerformed;
+        InputManager.Instance.FireCancelled -= OnFireCancelled;
     }
     public int GetCurrentCapacity()
     {
-        return m_storedObjects.Count +
-               m_objectsBeingSucked.Count;
+        return m_storedObjects.Count + m_objectsBeingSucked.Count;
     }
-
-    public int GetMaxCapacity()
-    {
-        return m_maxCapacity;
-    }
-
     public int GetStoredObjects()
     {
         return m_storedObjects.Count;
@@ -220,5 +260,18 @@ public class VacuumGun : MonoBehaviour
             Gizmos.DrawRay(origin, right * m_suctionRadius);
             Gizmos.DrawWireSphere(origin, m_suctionRadius);
         
+    }
+
+    private IEnumerator WaitBetweenLaunch(int desiredInt)
+    {
+        if (desiredInt != 0)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        while (m_storedObjects.Count > desiredInt)
+        {
+            Eject();
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
