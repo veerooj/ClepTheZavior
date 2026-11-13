@@ -6,6 +6,7 @@ public class GravityObject : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
     public bool rotate;
     public bool shouldrotate;
+    [Range(1,5)] public int capacityCost;
     private DinoBasics dinoBasics;
 
     [Header("TEMPORAL")] [SerializeField] private float timertoStand;

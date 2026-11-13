@@ -6,26 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ed07c6dd-ec87-4efc-b983-437ef17ed1b4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/CubemapStars.cubemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/CubemapStars.cubemap.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox04.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox04.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox041.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox041.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox042.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox042.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox043.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox043.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox044.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox044.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox045.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox045.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox046.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Real Stars Skybox/StarSkybox04/StarSkybox046.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayGround Marco.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayGround Marco.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Planet/GravityObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Planet/GravityObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/VacuumGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/VacuumGun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +20,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Dinos/DinoBasics.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Planet/GravityObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Planet/PlanetGravity.cs" root0="FORCE_HIGHLIGHTING" />
@@ -138,6 +123,7 @@
       <workItem from="1794346362302" duration="308000" />
       <workItem from="1794423905865" duration="16408000" />
       <workItem from="1794447113147" duration="615000" />
+      <workItem from="1794531402123" duration="3245000" />
     </task>
     <servers />
   </component>

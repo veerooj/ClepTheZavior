@@ -21,6 +21,7 @@ public class VacuumGun : MonoBehaviour
     private bool doingSomething = false;
     [Header("Inventory")]
     public int m_maxCapacity = 10;
+    private int m_currentCapacity;
 
     [Header("Ejection")]
     public float m_ejectForce = 15f;
@@ -32,7 +33,6 @@ public class VacuumGun : MonoBehaviour
     private bool m_isSucking;
     private List<Rigidbody> m_objectsBeingSucked = new List<Rigidbody>();
     private List<Rigidbody> m_storedObjects = new List<Rigidbody>();
-
     private void Awake()
     {
         if (m_audioSource == null)
@@ -60,45 +60,41 @@ public class VacuumGun : MonoBehaviour
     
     private void Vacuum()
     {
-        if (m_suctionPoint == null || m_raycastSpot == null)
+        if (GetCurrentCapacity() >= m_maxCapacity)
             return;
 
-        int availableCapacity = m_maxCapacity - m_storedObjects.Count /*- m_objectsBeingSucked.Count*/;
-
-        if (availableCapacity <= 0)
-            return;
-        Collider[] objects = Physics.OverlapSphere(m_suctionPoint.position, m_suctionRadius, m_suckableLayer);
+        Collider[] objects = Physics.OverlapSphere(
+            m_suctionPoint.position,
+            m_suctionRadius,
+            m_suckableLayer
+        );
 
         foreach (Collider col in objects)
         {
-            if (availableCapacity <= 0) break;
+            if (GetCurrentCapacity() >= m_maxCapacity)
+                break;
 
             Rigidbody rb = col.attachedRigidbody;
 
             if (rb == null) continue;
-
-            if (m_objectsBeingSucked.Contains(rb) || m_storedObjects.Contains(rb)) continue;
-
             if (!rb.gameObject.activeInHierarchy) continue;
+            if (m_objectsBeingSucked.Contains(rb)) continue;
+            if (m_storedObjects.Contains(rb)) continue;
 
             Vector3 direction = rb.position - m_raycastSpot.position;
-
             float angle = Vector3.Angle(m_raycastSpot.forward, direction);
 
             if (angle > m_suctionAngle / 2f)
                 continue;
-            
-            m_objectsBeingSucked.Add(rb);
 
-            availableCapacity--;
+            GravityObject gravityObject = rb.GetComponent<GravityObject>();
+
+            if (gravityObject == null) continue;
+            m_objectsBeingSucked.Add(rb);
         }
     }
     private void AttractObjects()
     {
-        if (m_suctionPoint == null || m_storedObjects.Count > m_maxCapacity)
-            return;
-        
-
         for (int i = m_objectsBeingSucked.Count - 1; i >= 0; i--)
         {
             Rigidbody rb = m_objectsBeingSucked[i];
@@ -110,51 +106,70 @@ public class VacuumGun : MonoBehaviour
             }
 
             Vector3 direction = m_suctionPoint.position - rb.position;
-
             float distance = direction.magnitude;
 
             if (distance <= m_collectDistance)
             {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+                GravityObject gravityObject = rb.GetComponent<GravityObject>();
 
-                rb.gameObject.SetActive(false);
+                if (gravityObject == null)
+                {
+                    m_objectsBeingSucked.RemoveAt(i);
+                    continue;
+                }
+
+                int cost = gravityObject.capacityCost;
 
                 m_objectsBeingSucked.RemoveAt(i);
-                m_storedObjects.Add(rb);
+                
+                    rb.linearVelocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+
+                    rb.gameObject.SetActive(false);
+
+                    m_currentCapacity += cost;
+                    m_storedObjects.Add(rb);
+                if (m_currentCapacity > m_maxCapacity)
+                {
+                    StartCoroutine(WaitBetweenLaunch(m_maxCapacity));
+                }
+
                 UIRefresh();
                 continue;
             }
 
-            rb.AddForce(direction.normalized * m_suctionForce, ForceMode.Acceleration);
+            rb.AddForce(
+                direction.normalized * m_suctionForce,
+                ForceMode.Acceleration
+            );
 
-            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, m_suctionMaxSpeed);
-        }
-
-        if (m_storedObjects.Count > m_maxCapacity)
-        {
-            StartCoroutine(WaitBetweenLaunch(m_maxCapacity));
+            rb.linearVelocity = Vector3.ClampMagnitude(
+                rb.linearVelocity,
+                m_suctionMaxSpeed
+            );
         }
     }
 
     private void UIRefresh()
     {
-        m_text.text = m_storedObjects.Count+"/"+ m_maxCapacity;
-        if (m_storedObjects.Count == m_maxCapacity)
+        m_text.text = m_currentCapacity+"/"+ m_maxCapacity;
+        if (m_currentCapacity == m_maxCapacity)
         {
             m_text.color = Color.crimson;
             m_text.fontSize = 28;
             m_text.text = "Full!";
         }
 
-        if (m_storedObjects.Count > m_maxCapacity)
+        if (m_currentCapacity > m_maxCapacity)
         {
             m_text.color = Color.red;
             m_text.fontSize = 37;
             m_text.text = ">_<";
         }
-        else if (m_storedObjects.Count < m_maxCapacity && m_text.color != Color.lawnGreen)
+        else if (m_currentCapacity < m_maxCapacity && m_text.color != Color.lawnGreen)
         {
+            if (!Mathf.Approximately(m_text.fontSize, 28))
+                m_text.fontSize = 28;
             m_text.color = Color.lawnGreen;
         }
     }
@@ -162,10 +177,6 @@ public class VacuumGun : MonoBehaviour
     private void Eject()
     {
         if (m_storedObjects.Count <= 0)
-            return;
-
-        if (m_suctionPoint == null ||
-            m_raycastSpot == null)
             return;
         int index = m_storedObjects.Count - 1;
         Rigidbody rb = m_storedObjects[index];
@@ -179,7 +190,7 @@ public class VacuumGun : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(m_raycastSpot.forward * m_ejectForce, ForceMode.Impulse);
-
+        m_currentCapacity -= m_storedObjects[index].GetComponent<GravityObject>().capacityCost;
         m_storedObjects.RemoveAt(index);
         UIRefresh();
     }
@@ -237,7 +248,19 @@ public class VacuumGun : MonoBehaviour
     }
     public int GetCurrentCapacity()
     {
-        return m_storedObjects.Count + m_objectsBeingSucked.Count;
+        int capacity = m_currentCapacity;
+
+        foreach (Rigidbody rb in m_objectsBeingSucked)
+        {
+            if (rb == null) continue;
+
+            GravityObject gravityObject = rb.GetComponent<GravityObject>();
+
+            if (gravityObject != null)
+                capacity += gravityObject.capacityCost;
+        }
+
+        return capacity;
     }
     public int GetStoredObjects()
     {
@@ -279,7 +302,7 @@ public class VacuumGun : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
         }
-        while (m_storedObjects.Count > desiredInt)
+        while (m_currentCapacity > desiredInt)
         {
             Eject();
             yield return new WaitForSeconds(0.1f);
