@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
   m_Name: DoubleJump
   m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
+  sector: 1
+  branch: 3
   UpgradeData:
   - StatType: 3
     skillIncreaseAmount: 0
@@ -22,5 +24,5 @@ MonoBehaviour:
   skillDescription: DoubleJump grants Clep the ability to jump 2 times on the air
   skillIcon: {fileID: 0}
   SkillPrerequisites: []
-  skillTier: 0
+  skillTier: 1
   cost: 0

@@ -1,17 +1,15 @@
 using System;
+using SkillTree;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIStatPanel : MonoBehaviour
 {
-    private Label skillNameLabel;
-    private Label skillDescLabel;
-    private Label skillCostLabel;
-    private Label dinoCoinsLabel;
-    private Label notEnoughTextLabel;
-    private Button buyButton;
-    
     private UIManager uIManager;
+    private ScriptableSkill skill;
+    
+    private Label skillTitleabel, skillDescLabel,skillCostLabel,dinoCoinsLabel,notEnoughTextLabel;
+    private Button buyButton;
 
     private void Awake()
     {
@@ -22,21 +20,123 @@ public class UIStatPanel : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (uIManager != null)
+        {
+            uIManager.OnSkillSelected += UpdateUI;
+            if (uIManager.SkillManager != null)
+            {
+                uIManager.SkillManager.OnDinoCoinsChanged += UpdateUI;
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (uIManager != null)
+        {
+            uIManager.OnSkillSelected -= UpdateUI;
+            if (uIManager.SkillManager != null)
+            {
+                uIManager.SkillManager.OnDinoCoinsChanged -= UpdateUI;
+            }
+        }
+    }
+
     private void Start()
     {
-        uIManager.SkillManager.OnDinoCoinsChanged += PopulateLabelText;
         GatherLabelReferences();
-        PopulateLabelText();
+        RegisterCallbacks();
+        UpdateUI();
     }
 
     private void GatherLabelReferences()
     {
-        skillDescLabel = uIManager.UIDocument.rootVisualElement.Q<Label>("StatDesc");
+        if (uIManager == null || uIManager.UIDocument == null || uIManager.UIDocument.rootVisualElement == null) return;
 
+        VisualElement root = uIManager.UIDocument.rootVisualElement;
+
+        skillTitleabel = root.Q<Label>("SkillName");
+        skillDescLabel = root.Q<Label>("SkillDesc");
+        skillCostLabel = root.Q<Label>("SkillCost");
+        dinoCoinsLabel = root.Q<Label>("DinoCoins");
+        notEnoughTextLabel = root.Q<Label>("NotEnoughText");
+        buyButton = root.Q<Button>("BuyButton");
     }
     
-    private void PopulateLabelText()
+    private void RegisterCallbacks()
     {
-        skillDescLabel.text = uIManager.Skill.skillDescription;
+        if (buyButton != null)
+        {
+            buyButton.clicked += OnBuyButtonClicked;
+        }
     }
+    
+    private void OnBuyButtonClicked()
+    {
+        if (uIManager.Skill == null || uIManager.SkillManager == null) return;
+
+        uIManager.SkillManager.UnlockSkill(uIManager.Skill);
+        uIManager.RefreshAllButtons(); // Pone el botón comprado al alfa 1.0 inmediatamente
+        UpdateUI();
+    }
+    
+    public void UpdateUI()
+    {
+        if (dinoCoinsLabel == null) return;
+
+        if (uIManager.SkillManager != null)
+        {
+            dinoCoinsLabel.text = $"Dino Coins: {uIManager.SkillManager.dinoCoins}";
+        }
+
+        var skill = uIManager.Skill;
+
+        if (skill == null)
+        {
+            skillTitleabel.text = "Select a Skill";
+            skillDescLabel.text = "";
+            skillCostLabel.text = "";
+            buyButton.SetEnabled(false);
+            notEnoughTextLabel.style.display = DisplayStyle.None;
+            return;
+        }
+
+        skillTitleabel.text = skill.skillName;
+        skillDescLabel.text = skill.skillDescription;
+        skillCostLabel.text = $"Cost: {skill.cost}";
+
+        bool isUnlocked = uIManager.SkillManager.IsSkillUnlocked(skill);
+        bool canAfford = uIManager.SkillManager.canAffordSkill(skill);
+        bool preReqsMet = uIManager.SkillManager.PreReqsMet(skill);
+
+        if (isUnlocked)
+        {
+            buyButton.text = "UNLOCKED";
+            buyButton.SetEnabled(false);
+            notEnoughTextLabel.style.display = DisplayStyle.None;
+        }
+        else if (!canAfford)
+        {
+            buyButton.text = "BUY SKILL";
+            buyButton.SetEnabled(false);
+            notEnoughTextLabel.text = "Not enough coins";
+            notEnoughTextLabel.style.display = DisplayStyle.Flex;
+        }
+        else if (!preReqsMet)
+        {
+            buyButton.text = "LOCKED";
+            buyButton.SetEnabled(false);
+            notEnoughTextLabel.text = "Prerequisites not met";
+            notEnoughTextLabel.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            buyButton.text = "BUY SKILL";
+            buyButton.SetEnabled(true);
+            notEnoughTextLabel.style.display = DisplayStyle.None;
+        }
+    }
+    
 }

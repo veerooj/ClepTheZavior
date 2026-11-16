@@ -7,6 +7,10 @@ namespace SkillTree
     [CreateAssetMenu(fileName = "New Skill", menuName = "Skills/New Skill")]
     public class ScriptableSkill : ScriptableObject
     {
+        [Header("Category and Type")] public SkillSector sector;
+        public SkillBranch branch;
+        
+        [Header("Data")]
         public List<UpgradeData> UpgradeData =  new List<UpgradeData>();
         public bool IsAbility;
         public string skillName;
@@ -21,11 +25,38 @@ namespace SkillTree
         private void OnValidate()
         {
             if (skillName == "") skillName = name;
+            
+            sector = GetSectorFromBranch(branch);
             if (UpgradeData.Count == 0) return;
             if (overwriteDescription) return;
        
             GenerateDescription();
 
+        }
+
+        private SkillSector GetSectorFromBranch(SkillBranch skillBranch)
+        {
+            switch (skillBranch)
+            {
+                case SkillBranch.DinoParty:
+                case SkillBranch.DinCoin:
+                case SkillBranch.Dino24k:
+                    return SkillSector.Dinos;
+
+                case SkillBranch.ZoubleJump:
+                case SkillBranch.ZetPack:
+                case SkillBranch.ClepRescue:
+                    return SkillSector.Player;
+
+                case SkillBranch.Capazity:
+                    return SkillSector.Gun;
+
+                case SkillBranch.ZaveThem:
+                    return SkillSector.Dome;
+
+                default:
+                    return SkillSector.Dinos;
+            }
         }
 
         private void GenerateDescription()
@@ -62,6 +93,30 @@ namespace SkillTree
                 
             }
         }
+    }
+    
+    public enum SkillSector
+    {
+        Dinos,
+        Player,
+        Gun,
+        Dome
+    }
+    
+    public enum SkillBranch
+    {
+        // Dinos
+        DinoParty,
+        DinCoin,
+        Dino24k,
+        // Player
+        ZoubleJump,
+        ZetPack,
+        ClepRescue,
+        // Gun
+        Capazity,
+        // Dome
+        ZaveThem
     }
     
     [System.Serializable]

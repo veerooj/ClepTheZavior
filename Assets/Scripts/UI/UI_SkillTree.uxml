@@ -1,34 +1,54 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="MainPanel" style="flex-grow: 1; flex-direction: row; background-color: rgba(213, 123, 238, 0.573);">
-        <ui:VisualElement name="SkillTree" style="flex-grow: 0; border-right-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); width: 75%; flex-direction: row; flex-wrap: wrap;">
-            <ui:VisualElement name="Dinos" style="flex-grow: 1; flex-direction: column; flex-wrap: nowrap; width: 50%; height: 50%; background-color: rgb(255, 254, 198);">
-                <ui:VisualElement name="Tier1_D" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier2_D" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier3_D" style="flex-grow: 1;"/>
+        
+        <!-- IZQUIERDA: SKILL TREE (60%) -->
+        <ui:VisualElement name="SkillTree" style="width: 60%; height: 100%; border-right-width: 2px; border-right-color: rgb(0, 0, 0); flex-direction: row; flex-wrap: wrap;">
+            
+            <!-- DINOS (50% x 50%) -->
+            <ui:VisualElement name="Dinos" style="width: 50%; height: 50%; flex-direction: row; padding: 10px; background-color: rgb(255, 254, 198);">
+                <ui:VisualElement name="DinoParty" style="flex-grow: 1; align-items: center;"/>
+                <ui:VisualElement name="DinCoin" style="flex-grow: 1; align-items: center;"/>
+                <ui:VisualElement name="24kDino" style="flex-grow: 1; align-items: center;"/>
             </ui:VisualElement>
-            <ui:VisualElement name="Player" style="flex-grow: 1; width: 50%; height: 50%; background-color: rgb(175, 255, 181);">
-                <ui:VisualElement name="Tier1_P" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier2_P" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier3_P" style="flex-grow: 1;"/>
+
+            <!-- PLAYER (50% x 50%) -->
+            <ui:VisualElement name="Player" style="width: 50%; height: 50%; flex-direction: row; padding: 10px; background-color: rgb(175, 255, 181);">
+                <ui:VisualElement name="ZoubleJump" style="flex-grow: 1; align-items: center;"/>
+                <ui:VisualElement name="ZetPack" style="flex-grow: 1; align-items: center;"/>
+                <ui:VisualElement name="ClepRescue" style="flex-grow: 1; align-items: center;"/>
             </ui:VisualElement>
-            <ui:VisualElement name="Gun" style="flex-grow: 1; width: 50%; height: 50%; background-color: rgb(112, 156, 249);">
-                <ui:VisualElement name="Tier1_G" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier2_G" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier3_G" style="flex-grow: 1;"/>
+
+            <!-- GUN (50% x 50%) -->
+            <ui:VisualElement name="Gun" style="width: 50%; height: 50%; flex-direction: row; padding: 10px; background-color: rgb(112, 156, 249);">
+                <ui:VisualElement name="Capazity_1_4" style="flex-grow: 1; align-items: center;"/>
+                <ui:VisualElement name="Capazity_5_8" style="flex-grow: 1; align-items: center;"/>
             </ui:VisualElement>
-            <ui:VisualElement name="Dome" style="flex-grow: 1; width: 50%; height: 50%; background-color: rgb(176, 176, 176);">
-                <ui:VisualElement name="Tier1_DM" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier2_DM" style="flex-grow: 1;"/>
-                <ui:VisualElement name="Tier3_DM" style="flex-grow: 1;"/>
+
+            <!-- DOME (50% x 50%) -->
+            <ui:VisualElement name="Dome" style="width: 50%; height: 50%; flex-direction: row; padding: 10px; background-color: rgb(176, 176, 176);">
+                <ui:VisualElement name="ZaveThem" style="flex-grow: 1; align-items: center;"/>
             </ui:VisualElement>
+
         </ui:VisualElement>
-        <ui:VisualElement name="Skill" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.667); flex-direction: column; border-left-width: 2px; flex-wrap: nowrap; width: auto;">
-            <ui:VisualElement name="SkillDescription" style="flex-grow: 1; height: 20%;">
-                <ui:Label text="STAT NAME" name="StatName" style="width: auto; height: auto; font-size: 25px; -unity-text-align: middle-center; border-top-width: 25px;"/>
-                <ui:Label text="stat desc" name="StatDesc" style="-unity-text-align: middle-center; height: 40%;"/>
-                <ui:Label text="Label" name="DinoCoins" style="-unity-text-align: middle-center;"/>
+
+        <!-- DERECHA: SKILL PANEL (40%) -->
+        <ui:VisualElement name="Skill" style="width: 40%; height: 100%; background-color: rgba(255, 255, 255, 0.85); flex-direction: column;">
+            
+            <!-- DESCRIPCIÓN (60%) -->
+            <ui:VisualElement name="SkillDescription" style="height: 60%; width: 100%; padding: 15px; justify-content: space-between; border-bottom-width: 2px; border-bottom-color: rgb(0, 0, 0);">
+                <ui:Label text="Dino Coins: 0" name="DinoCoins" style="font-size: 18px; -unity-font-style: bold; -unity-text-align: upper-right;"/>
+                <ui:Label text="SKILL NAME" name="SkillName" style="font-size: 26px; -unity-font-style: bold; -unity-text-align: middle-center;"/>
+                <ui:Label text="Select a skill to see its description." name="SkillDesc" style="font-size: 16px; white-space: normal; -unity-text-align: middle-center; flex-grow: 1;"/>
+                <ui:Label text="Cost: 0" name="SkillCost" style="font-size: 20px; -unity-font-style: bold; -unity-text-align: middle-center;"/>
             </ui:VisualElement>
-            <ui:VisualElement name="StatPanel" class="SkillDescription" style="flex-grow: 1; flex-direction: column-reverse; align-items: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);"/>
+
+            <!-- COMPRAR (40%) -->
+            <ui:VisualElement name="BuyPanel" style="height: 40%; width: 100%; padding: 15px; justify-content: center; align-items: center;">
+                <ui:Button text="BUY SKILL" name="BuyButton" style="width: 70%; height: 50px; font-size: 20px; -unity-font-style: bold; margin-bottom: 10px;"/>
+                <ui:Label text="Not enough coins" name="NotEnoughText" style="font-size: 14px; color: rgb(200, 30, 30); -unity-text-align: middle-center;"/>
+            </ui:VisualElement>
+
         </ui:VisualElement>
+
     </ui:VisualElement>
 </ui:UXML>
