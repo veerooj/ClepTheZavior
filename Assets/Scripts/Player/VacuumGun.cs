@@ -10,7 +10,7 @@ public class VacuumGun : MonoBehaviour
     public Transform m_raycastSpot;
     public Transform m_suctionPoint;
     public AudioSource m_audioSource;
-
+    [SerializeField] private GameObject m_suction;
     [Header("Vacuum Settings")]
     public float m_suctionRadius = 8f;
     public float m_suctionForce = 30f;
@@ -95,6 +95,7 @@ public class VacuumGun : MonoBehaviour
     }
     private void AttractObjects()
     {
+        Debug.Log("Attracting");
         for (int i = m_objectsBeingSucked.Count - 1; i >= 0; i--)
         {
             Rigidbody rb = m_objectsBeingSucked[i];
@@ -200,6 +201,9 @@ public class VacuumGun : MonoBehaviour
         if (doingSomething) return;
         m_isSucking = true;
         doingSomething = true;
+        if (m_suction.activeInHierarchy) return;
+        m_suction.SetActive(true);
+        Debug.Log("Se activa");
     }
 
     private void OnSuckCancelled()
@@ -210,7 +214,8 @@ public class VacuumGun : MonoBehaviour
             m_objectsBeingSucked.RemoveAt(i);
         }
         doingSomething = false;
-
+        m_suction.SetActive(false);
+        Debug.Log("Se desactiva");
     }
 
     private void OnFirePerformed()
