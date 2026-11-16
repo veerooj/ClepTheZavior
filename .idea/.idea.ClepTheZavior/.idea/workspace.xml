@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed07c6dd-ec87-4efc-b983-437ef17ed1b4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UI_SkillTree.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UI_SkillTree.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-    </list>
+    <list default="true" id="ed07c6dd-ec87-4efc-b983-437ef17ed1b4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,7 +115,7 @@
       <workItem from="1794423905865" duration="16408000" />
       <workItem from="1794447113147" duration="615000" />
       <workItem from="1794531402123" duration="3245000" />
-      <workItem from="1794783289319" duration="2538000" />
+      <workItem from="1794783289319" duration="3227000" />
     </task>
     <servers />
   </component>
