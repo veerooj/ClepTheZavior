@@ -1,0 +1,34 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="MainPanel" style="flex-grow: 1; flex-direction: row; background-color: rgba(213, 123, 238, 0.573);">
+        <ui:VisualElement name="SkillTree" style="flex-grow: 0; border-right-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); width: 75%; flex-direction: row; flex-wrap: wrap;">
+            <ui:VisualElement name="Dinos" style="flex-grow: 1; flex-direction: column; flex-wrap: nowrap; width: 50%; height: 50%; background-color: rgb(255, 254, 198);">
+                <ui:VisualElement name="Tier1_D" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier2_D" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier3_D" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Player" style="flex-grow: 1; width: 50%; height: 50%; background-color: rgb(175, 255, 181);">
+                <ui:VisualElement name="Tier1_P" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier2_P" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier3_P" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Gun" style="flex-grow: 1; width: 50%; height: 50%; background-color: rgb(112, 156, 249);">
+                <ui:VisualElement name="Tier1_G" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier2_G" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier3_G" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Dome" style="flex-grow: 1; width: 50%; height: 50%; background-color: rgb(176, 176, 176);">
+                <ui:VisualElement name="Tier1_DM" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier2_DM" style="flex-grow: 1;"/>
+                <ui:VisualElement name="Tier3_DM" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Skill" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.667); flex-direction: column; border-left-width: 2px; flex-wrap: nowrap; width: auto;">
+            <ui:VisualElement name="SkillDescription" style="flex-grow: 1; height: 20%;">
+                <ui:Label text="STAT NAME" name="StatName" style="width: auto; height: auto; font-size: 25px; -unity-text-align: middle-center; border-top-width: 25px;"/>
+                <ui:Label text="stat desc" name="StatDesc" style="-unity-text-align: middle-center; height: 40%;"/>
+                <ui:Label text="Label" name="DinoCoins" style="-unity-text-align: middle-center;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="StatPanel" class="SkillDescription" style="flex-grow: 1; flex-direction: column-reverse; align-items: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
