@@ -428,7 +428,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d9e225a9878bb47b0f2481969a7ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  skillLibrary: {fileID: 11400000, guid: a1d46101c7f8824479fc468dcc1fae41, type: 2}
   selectedSkill: {fileID: 0}
+  uiSkillButton: {fileID: 9197481963319205126, guid: 2cc0969ce3f57b1418720252b825e814, type: 3}
 --- !u!114 &1411655761
 MonoBehaviour:
   m_ObjectHideFlags: 0

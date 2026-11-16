@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
   m_Name: Jetpack
   m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
+  sector: 1
+  branch: 4
   UpgradeData:
-  - StatType: 4
+  - StatType: 6
     skillIncreaseAmount: 1
     isPercentage: 0
   IsAbility: 1
-  skillName: Zetpack!
+  skillName: Zetpack! II
   overwriteDescription: 0
-  skillDescription: Zetpack! grants Clep a Jetpack which will make them float in
-    the air
+  skillDescription: Zetpack! II grants Clep a Jetpack which will make them float
+    in the air
   skillIcon: {fileID: 0}
   SkillPrerequisites: []
-  skillTier: 1
+  skillTier: 2
   cost: 100

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
   m_Name: GoldenChanceIII
   m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
+  sector: 0
+  branch: 2
   UpgradeData:
   - StatType: 2
     skillIncreaseAmount: 25
