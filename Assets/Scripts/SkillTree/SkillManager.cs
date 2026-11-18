@@ -8,6 +8,8 @@ namespace SkillTree
 {
     public class SkillManager : MonoBehaviour
     {
+        public static SkillManager Instance { get; private set; }
+        
         [Header("Dino Values)")] private float _dinoSpawnTime, _dinoValue, _dinoGoldenChance;
 
         [Header("Player Values")] [Header("Abilities")]
@@ -40,7 +42,14 @@ namespace SkillTree
 
         private void Awake()
         {
-            _dinoCoins = 10;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         public void GainDinoCoin() //this is placeholder until we get the dinos thingy 

@@ -19,11 +19,11 @@ MonoBehaviour:
     skillIncreaseAmount: 1
     isPercentage: 0
   IsAbility: 0
-  skillName: ZaveThem! IV
+  skillName: ZaveThem! V
   overwriteDescription: 0
-  skillDescription: ZaveThem! IV increases domeParts by 1point(s).
+  skillDescription: ZaveThem! V increases domeParts by 1point(s).
   skillIcon: {fileID: 0}
   SkillPrerequisites:
-  - {fileID: 11400000, guid: 6fe26d02e1173b348b06e82c7408a8ff, type: 2}
-  skillTier: 4
-  cost: 10000
+  - {fileID: 11400000, guid: d75d706cba79be84c9600cc756e89925, type: 2}
+  skillTier: 5
+  cost: 50000
