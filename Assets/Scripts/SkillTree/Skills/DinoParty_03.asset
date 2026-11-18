@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
+  m_Name: DinoParty_03
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
+  sector: 0
+  branch: 0
+  UpgradeData:
+  - StatType: 0
+    skillIncreaseAmount: 200
+    isPercentage: 1
+  IsAbility: 0
+  skillName: DinoParty III
+  overwriteDescription: 0
+  skillDescription: DinoParty III increases dinoSpawnTime by 200%.
+  skillIcon: {fileID: 0}
+  SkillPrerequisites:
+  - {fileID: 11400000, guid: dc9d44e6092360b43b15909fa91a0062, type: 2}
+  skillTier: 3
+  cost: 100

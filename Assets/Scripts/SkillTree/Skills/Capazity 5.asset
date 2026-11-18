@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
-  m_Name: Jetpack
+  m_Name: Capazity 5
   m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
-  sector: 1
-  branch: 4
+  sector: 2
+  branch: 6
   UpgradeData:
-  - StatType: 6
-    skillIncreaseAmount: 1
-    isPercentage: 0
-  IsAbility: 1
-  skillName: Zetpack! II
+  - StatType: 7
+    skillIncreaseAmount: 100
+    isPercentage: 1
+  IsAbility: 0
+  skillName: Capazity
   overwriteDescription: 0
-  skillDescription: Zetpack! II grants Clep a Jetpack which will make them float
-    in the air
+  skillDescription: Capazity increases gunCapacity by 100%.
   skillIcon: {fileID: 0}
-  SkillPrerequisites: []
-  skillTier: 2
-  cost: 100
+  SkillPrerequisites:
+  - {fileID: 11400000, guid: 366f1a35de49ee24fb42d032301f1e3f, type: 2}
+  skillTier: 6
+  cost: 200

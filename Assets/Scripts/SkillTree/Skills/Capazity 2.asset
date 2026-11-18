@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
+  m_Name: Capazity 2
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
+  sector: 2
+  branch: 6
+  UpgradeData:
+  - StatType: 7
+    skillIncreaseAmount: 45
+    isPercentage: 1
+  IsAbility: 0
+  skillName: Capazity
+  overwriteDescription: 0
+  skillDescription: Capazity increases gunCapacity by 45%.
+  skillIcon: {fileID: 0}
+  SkillPrerequisites:
+  - {fileID: 11400000, guid: ef61a972c366a014989f596f497a487e, type: 2}
+  skillTier: 3
+  cost: 60

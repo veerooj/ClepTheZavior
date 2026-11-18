@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed07c6dd-ec87-4efc-b983-437ef17ed1b4" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UISkillButton.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UISkillButton.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" afterDir="false" />
@@ -19,6 +20,11 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIStatPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIStatPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UI_SkillTree.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UI_SkillTree.uxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UI_Skill_Button.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UI_Skill_Button.uxml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ClepTheZavior/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayGround Marco.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayGround Marco.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/VacuumGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/VacuumGun.cs" afterDir="false" />
+>>>>>>> 732babe59c9e66d4b5f25f2b23e5faa370d9580d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +54,10 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+=======
+>>>>>>> 732babe59c9e66d4b5f25f2b23e5faa370d9580d
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -64,8 +73,10 @@
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\marco\Unity Poryectos\ClepTheZavior&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\marco\Unity Poryectos\ClepTheZavior" />
       <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
@@ -74,8 +85,10 @@
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\marco\Unity Poryectos\ClepTheZavior&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\marco\Unity Poryectos\ClepTheZavior" />
       <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
@@ -107,7 +120,7 @@
       <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
+    <configuration name="Attach to Device" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
       <method v="2" />
     </configuration>
   </component>
@@ -130,8 +143,12 @@
       <workItem from="1794423905865" duration="16408000" />
       <workItem from="1794447113147" duration="615000" />
       <workItem from="1794531402123" duration="3245000" />
+<<<<<<< HEAD
       <workItem from="1794783289319" duration="3375000" />
       <workItem from="1794824547178" duration="9875000" />
+=======
+      <workItem from="1794826760841" duration="1150000" />
+>>>>>>> 732babe59c9e66d4b5f25f2b23e5faa370d9580d
     </task>
     <servers />
   </component>

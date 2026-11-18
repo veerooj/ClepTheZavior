@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0150d7ad275427489276cb27048099d, type: 3}
-  m_Name: GoldenChanceIII
+  m_Name: ZaveThem 1
   m_EditorClassIdentifier: Assembly-CSharp::SkillTree.ScriptableSkill
-  sector: 0
-  branch: 2
+  sector: 3
+  branch: 7
   UpgradeData:
-  - StatType: 2
-    skillIncreaseAmount: 25
+  - StatType: 8
+    skillIncreaseAmount: 1
     isPercentage: 0
   IsAbility: 0
-  skillName: 24k Dino III
+  skillName: ZaveThem! II
   overwriteDescription: 0
-  skillDescription: 24k Dino III increases dinoGoldenChance by 25point(s).
+  skillDescription: ZaveThem! II increases domeParts by 1point(s).
   skillIcon: {fileID: 0}
-  SkillPrerequisites: []
-  skillTier: 3
-  cost: 0
+  SkillPrerequisites:
+  - {fileID: 11400000, guid: a7f321d66b46e354d9c715425c8ca4aa, type: 2}
+  skillTier: 2
+  cost: 2500

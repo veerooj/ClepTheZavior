@@ -56,13 +56,19 @@ public class UIStatPanel : MonoBehaviour
         if (uIManager == null || uIManager.UIDocument == null || uIManager.UIDocument.rootVisualElement == null) return;
 
         VisualElement root = uIManager.UIDocument.rootVisualElement;
-
+        
         skillTitleabel = root.Q<Label>("SkillName");
         skillDescLabel = root.Q<Label>("SkillDesc");
         skillCostLabel = root.Q<Label>("SkillCost");
         dinoCoinsLabel = root.Q<Label>("DinoCoins");
         notEnoughTextLabel = root.Q<Label>("NotEnoughText");
         buyButton = root.Q<Button>("BuyButton");
+        
+        if (buyButton != null)
+        {
+            buyButton.style.opacity = 1f;
+            buyButton.SetEnabled(true);
+        }
     }
     
     private void RegisterCallbacks()
@@ -75,10 +81,27 @@ public class UIStatPanel : MonoBehaviour
     
     private void OnBuyButtonClicked()
     {
-        if (uIManager.Skill == null || uIManager.SkillManager == null) return;
-
-        uIManager.SkillManager.UnlockSkill(uIManager.Skill);
-        uIManager.RefreshAllButtons(); // Pone el botón comprado al alfa 1.0 inmediatamente
+        var skill = uIManager.Skill;
+        if (skill == null || uIManager.SkillManager == null) return;
+        
+        if (uIManager.SkillManager.IsSkillUnlocked(skill)) return;
+        
+        if (!uIManager.SkillManager.PreReqsMet(skill))
+        {
+            notEnoughTextLabel.text = "Prerequisites not met";
+            notEnoughTextLabel.style.display = DisplayStyle.Flex;
+            return;
+        }
+        
+        if (!uIManager.SkillManager.canAffordSkill(skill))
+        {
+            notEnoughTextLabel.text = "Not enough coins";
+            notEnoughTextLabel.style.display = DisplayStyle.Flex;
+            return;
+        }
+        
+        uIManager.SkillManager.UnlockSkill(skill);
+        uIManager.RefreshAllButtons();
         UpdateUI();
     }
     
@@ -92,6 +115,10 @@ public class UIStatPanel : MonoBehaviour
         }
 
         var skill = uIManager.Skill;
+        
+        notEnoughTextLabel.style.display = DisplayStyle.None;
+        buyButton.style.opacity = 1f;
+        buyButton.SetEnabled(true);
 
         if (skill == null)
         {
